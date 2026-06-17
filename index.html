@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>课堂匿名提问箱 师生互动系统</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #f0eaff, #e8f4ff);
+            padding: 30px 15px;
+        }
+        .container {
+            max-width: 1080px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 6px 24px rgba(110, 80, 200, 0.12);
+            overflow: hidden;
+        }
+        .header-bar {
+            background: #7b61ff;
+            color: white;
+            text-align: center;
+            padding: 28px 20px;
+        }
+        .header-bar h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+        .header-bar p {
+            opacity: 0.9;
+            font-size: 16px;
+        }
+        .main-content {
+            padding: 35px;
+        }
+        .section-title {
+            font-size: 22px;
+            color: #423075;
+            border-left: 6px solid #907bff;
+            padding: 8px 16px;
+            margin: 42px 0 20px;
+        }
+        .section-title:first-of-type {
+            margin-top: 0;
+        }
+        /* 核心匿名提问交互区域 */
+        .interact-box {
+            background: #f7f4ff;
+            border-radius: 16px;
+            padding: 40px 25px;
+        }
+        .input-area textarea {
+            width: 100%;
+            height: 110px;
+            padding: 14px;
+            border: 1px solid #cbbfff;
+            border-radius: 10px;
+            font-size: 16px;
+            resize: none;
+            margin-bottom: 16px;
+        }
+        .btn-wrap {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .btn-wrap button {
+            padding: 13px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 17px;
+            color: white;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+        #submitQ {
+            background: #7b61ff;
+        }
+        #clearAllMsg {
+            background: #8c80b3;
+        }
+        .msg-record h4 {
+            color: #423075;
+            margin-bottom: 12px;
+            font-size: 19px;
+        }
+        #messageList {
+            list-style: none;
+        }
+        .msg-item {
+            background: #fff;
+            border: 1px solid #ddccff;
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 14px;
+        }
+        .student-q {
+            color: #333;
+            margin-bottom: 8px;
+        }
+        .teacher-a {
+            color: #7b61ff;
+        }
+        /* 通用知识点卡片 */
+        .info-card {
+            background: #fbfaff;
+            border: 1px solid #e2d9f8;
+            border-radius: 14px;
+            padding: 24px;
+            line-height: 1.86;
+            font-size: 16px;
+        }
+        .info-card h3 {
+            color: #553ea0;
+            margin-bottom: 12px;
+        }
+        .info-card ul {
+            padding-left: 26px;
+            margin: 12px 0;
+        }
+        .info-card a {
+            color: #7b61ff;
+            text-decoration: none;
+        }
+        .info-card a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header-bar">
+        <h1>课堂匿名提问箱 · 师生双向互动系统</h1>
+        <p>课堂沟通知识展示 + 匿名提问答疑互动工具</p >
+    </div>
+    <div class="main-content">
+        <!-- 模块1：核心师生匿名互动功能 -->
+        <h2 class="section-title">一、课堂匿名提问互动区</h2>
+        <div class="interact-box">
+            <div class="input-area">
+                <textarea id="questionInput" placeholder="在这里输入你本节课不懂的知识点、学习困惑、课堂建议，提交后匿名展示给老师，不用担心不敢发言！"></textarea>
+            </div>
+            <div class="btn-wrap">
+                <button id="submitQ">提交匿名提问</button>
+                <button id="clearAllMsg">清空全部提问记录</button>
+            </div>
+            <div class="msg-record">
+                <h4>师生问答记录区</h4>
+                <ul id="messageList">
+                    <li class="msg-item">
+                        <p class="student-q"><strong>匿名学生提问：</strong>课堂上讲的知识点节奏太快，跟不上怎么办？</p >
+                        <p class="teacher-a"><strong>老师回复：</strong>课后可以把不懂的内容统一发到提问箱，下节课开头集中讲解，也可以课下单独找我沟通。</p >
+                    </li>
+                    <li class="msg-item">
+                        <p class="student-q"><strong>匿名学生提问：</strong>课后拓展练习在哪里可以找到配套资料？</p >
+                        <p class="teacher-a"><strong>老师回复：</strong>下方链接内有课堂配套学习资料，大家可以自行打开查看。</p >
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 模块2：课堂师生沟通知识点展示 -->
+        <h2 class="section-title">二、高效课堂师生沟通知识点</h2>
+        <div class="info-card">
+            <h3>匿名提问课堂互动教学优势</h3>
+            <ul>
+                <li>消除学生发言胆怯心理：内向同学可匿名提出疑问，全员参与课堂互动</li>
+                <li>老师精准掌握学情：快速收集全班共性难题，针对性调整授课节奏</li>
+                <li>收集课堂优化建议：学生可提交课程节奏、作业量、教学方式建议</li>
+                <li>课后持续答疑：课间、自习课均可提交问题，不受课堂时间限制</li>
+            </ul>
+            <p>配套学习拓展链接：
+                <a href=" " target="_blank">HTML网页基础学习平台</a >
+                &nbsp;|&nbsp;
+                <a href="https://www.runoob.com/html/html-tutorial.html" target="_blank">前端代码实操教程</a >
+            </p >
+        </div>
+
+        <!-- 模块3：师生留言补充互动区 -->
+        <h2 class="section-title">三、师生补充答疑留言区</h2>
+        <div class="info-card">
+            <p><strong>学生提问：</strong>这个提问箱投屏到教室大屏幕，所有人都能看到提交的问题吗？</p >
+            <p><strong>老师回复：</strong>页面适配投影仪全屏展示，提交的匿名问题全班可见，适合集中统一答疑。</p >
+            <br>
+            <p><strong>学生提问：</strong>提交的问题可以删除吗？</p >
+            <p><strong>老师回复：</strong>页面设有一键清空全部记录按钮，课堂结束后可清理本次提问内容。</p >
+        </div>
+    </div>
+</div>
+
+<script>
+    // 获取页面元素
+    const questionInput = document.getElementById("questionInput");
+    const submitBtn = document.getElementById("submitQ");
+    const clearBtn = document.getElementById("clearAllMsg");
+    const msgList = document.getElementById("messageList");
+
+    // 提交匿名提问功能
+    submitBtn.onclick = function () {
+        let qText = questionInput.value.trim();
+        if (!qText) {
+            alert("请输入你的课堂疑问再提交！");
+            return;
+        }
+        // 创建提问条目
+        let li = document.createElement("li");
+        li.className = "msg-item";
+        li.innerHTML = `
+            <p class="student-q"><strong>匿名学生提问：</strong>${qText}</p >
+            <p class="teacher-a"><strong>老师待回复：</strong>本节课下课统一解答</p >
+        `;
+        // 新提问放在最上方
+        msgList.prepend(li);
+        // 清空输入框
+        questionInput.value = "";
+    }
+
+    // 一键清空所有提问记录
+    clearBtn.onclick = function () {
+        if (confirm("确定要清空全部师生问答记录吗？")) {
+            msgList.innerHTML = "";
+        }
+    }
+</script>
+</body>
+</html>
